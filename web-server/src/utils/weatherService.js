@@ -8,12 +8,13 @@ const weather = (lat, long, callback) => {
             callback('Unable to connect to weather service', undefined)
         } else if (body.error) {
             callback('Unable to find location', undefined)
-        } else {    
+        } else {
             callback(undefined, {
                 location: body.location.name,
                 weather: body.current.weather_descriptions[0],
                 temperature: body.current.temperature,
-                feels: body.current.feelslike
+                feels: body.current.feelslike,
+                time: body.location.localtime
             })
         }
     })

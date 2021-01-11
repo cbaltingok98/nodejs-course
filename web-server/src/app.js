@@ -1,18 +1,18 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const app = express()
 const geocode = require('./utils/geoCode')
 const forecast = require('./utils/weatherService')
 
-app.set("port", (process.env.PORT || 5000));
+const app = express()
+const port = process.env.PORT || 3000
 
 //Define paths for express config
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, './templates/views')
 const partialsPath = path.join(__dirname, './templates/partials')
 
-// Setup handlebars engine and views location
+// Setup handlebars engine and views location // tes
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
@@ -59,7 +59,8 @@ app.get('/weather', (req, res) => {
             res.send({
                 foreCast: forecastData,
                 location,
-                address: req.query.address
+                address: req.query.address,
+                localTime: forecastData.time
             })  
         })
     })
@@ -93,6 +94,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(app.get('port'), () => {
-    console.log('Server is up on port ' + app.get('port'))
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })

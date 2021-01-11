@@ -1,6 +1,0 @@
-{
-    "name": "Node.js weather app",
-    "description" : "",
-    "repository": "https://git.heroku.com/altingok-weather-application.git",
-    "keywords" : ["node", "express", "static"]
-}
